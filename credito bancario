@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crédito Bancário</title>
+</head>
+
+<body>
+    <h1>*Crédito emprestimo</h1>
+    <input type="text" id="Val" placeholder="Seu saldo médio">
+    <input type="button" value="Calcular" onclick="calcularSaldo()"></input>
+    <p id="resposta"></p>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
+
+function calcularSaldo() {
+    saldo = parseInt(document.getElementById('Val').value);
+    msg = ''
+
+    if (saldo <= 1300) {
+        msg = saldo * 0.20
+    } else if (saldo <= 3000) {
+        msg = saldo * 0.30
+    } else if (saldo <= 8000) {
+        msg = saldo * 0.45
+    } else if (saldo <= 10000) {
+        msg = saldo * 0.50
+    } else if (saldo > 10000) {
+        msg = saldo * 0.60
+    }
+    document.getElementById('resposta').innerHTML = `O crédito é: ${msg}`
+}
