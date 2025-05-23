@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 3</title>
+</head>
+
+<body>
+    <h1>IMC</h1>
+    <input type="text" id="P" placeholder="Seu peso">
+    <input type="text" id="A" placeholder="Sua altura">
+    <input type="button" value="Calcular" onclick="calcularIMC()"></input>
+    <p id="resposta"></p>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
+
+function calcularIMC() {
+    anakin = parseFloat(document.getElementById('P').value);
+    dark = parseFloat(document.getElementById('A').value);
+
+    imc = anakin / (dark * dark)
+    msg = ''
+
+    if (imc < 18.5) {
+        msg = 'Abaixo do Peso'
+    } else if (imc <= 24.9) {
+        msg = 'Peso normal'
+    } else if (imc <= 29.9) {
+        msg = 'Sobrepeso'
+    } else if (imc >= 30) {
+        msg = 'Obesidade'
+    }
+    document.getElementById('resposta').innerHTML = `O seu IMC é: ${imc} e sua classificação: ${msg}`
+}
