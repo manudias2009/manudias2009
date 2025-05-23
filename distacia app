@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Transporte</title>
+    <script src="js/script.js"></script>
+</head>
+<link rel="stylesheet" href="">
+
+<body>
+    <h1>Calcular o preço da viagem</h1>
+    <h2>-- qual é o tipo do carro?</h2>
+    <p>1 - comum</p>
+    <p>2 - Premium</p>
+    <p>3 - VIP</p>
+    <input type="number" id="tipoCarro" placeholder="digite o tipo do carro">
+    <h2>-- qual é a distância km da viagem?</h2>
+    <input type="number" id="distancia" placeholder="digite a distância da viagem">
+    <h2>-- Que dia na semana é a viagem?</h2>
+    <p>1 - Domingo</p>
+    <p>2 - Segunda-feira</p>
+    <p>3 - Terça-feira</p>
+    <p>4 - Quarta-feira</p>
+    <p>5 - Quinta-feira</p>
+    <p>6 - Sexta-feira</p>
+    <p>7 - Sábado</p>
+    <input type="number" id="diaSemana" placeholder="digite o dia da semana">
+    <h2>-- Qual é a hora tem 24h da viagem</h2>
+    <input type="number" id="hora" placeholder="digite a hora da viagem">
+    <br>
+    <br>
+    <input type="button" value="Calcular" onclick="calcular()">
+    <p id="resposta"></p>
+</body>
+
+</html>
+
+
+
+function calcular() {
+    tipoCarro = parseInt(document.getElementById('tipoCarro').value);
+    distancia = parseInt(document.getElementById('distancia').value);
+    diaSemana = parseInt(document.getElementById('diaSemana').value);
+    hora = parseInt(document.getElementById('hora').value);
+    valor = 0;
+    switch (tipoCarro) {
+        case 1:
+            if ((diaSemana >= 2 && diaSemana <= 6) && ((hora >= 6 && hora <= 10) || (hora >= 17 && hora <= 20))) {
+                valor = distancia * 2.5;
+                valor += valor * 0.15;
+            } else {
+                valor = distancia * 2.5;
+            }
+            if (hora >= 0 && hora <= 6) {
+                valor += valor * 0.2;
+            }
+            if ((diaSemana === 7 || diaSemana === 1) && (hora >= 15 && hora <= 17)) {
+                valor -= valor * 0.1;
+            }
+            if (distancia >= 100) {
+                valor += 50;
+            }
+            break;
+        case 2:
+            if ((diaSemana >= 2 && diaSemana <= 6) && ((hora >= 6 && hora <= 10) || (hora >= 17 && hora <= 20))) {
+                valor = distancia * 4.5;
+                valor += valor * 0.15;
+            } else {
+                valor = distancia * 4.5;
+            }
+            if (hora >= 0 && hora <= 6) {
+                valor += valor * 0.2;
+            }
+            if ((diaSemana === 7 || diaSemana === 1) && (hora >= 15 && hora <= 17)) {
+                valor -= valor * 0.1;
+            }
+            if (distancia >= 100) {
+                valor += 50;
+            }
+            break;
+        case 3:
+            if ((diaSemana >= 2 && diaSemana <= 6) && ((hora >= 6 && hora <= 10) || (hora >= 17 && hora <= 20))) {
+                valor = distancia * 7.8;
+                valor += valor * 0.15;
+            } else {
+                valor = distancia * 7.8;
+            }
+            if (hora >= 0 && hora <= 6) {
+                valor += valor * 0.2;
+            }
+            if ((diaSemana === 7 || diaSemana === 1) && (hora >= 15 && hora <= 17)) {
+                valor -= valor * 0.1;
+            }
+            if (distancia >= 100) {
+                valor += 50;
+            }
+            break;
+        default:
+            break;
+    }
+    document.getElementById("resposta").innerHTML = `O valor da sua viagem será de R$${valor.toFixed(2)}`;
+}
